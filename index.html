@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ailaan Digitals</title>
+    <!-- Tailwind Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script> -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              Navbar: "rgba(132, 170, 171, 0.9)",
+              Background: "rgba(209,235,236,255)",
+              ServiceBox: "rgba(153,165,171,0.9)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Navbar -->
+    <style>
+      .hover-effect:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+      }
+
+      /* Navbar transition and visibility */
+      .navbar-hidden {
+        transform: translateY(-100%);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .navbar-visible {
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      .animate-scroll {
+        animation: scroll 40s linear;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      id="navbar"
+      class="bg-Navbar fixed w-full shadow-md z-20 navbar-visible"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="">
+              <img
+                src="Images/AilaanLogoBlack2.png"
+                alt="Procon Media Logo"
+                class="w-40 h-auto"
+              />
+            </a>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a
+                href="/"
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Home</a
+              >
+              <a
+                href="/services.html"
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Services</a
+              >
+              <a
+                href="/clients.html"
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Clients</a
+              >
+              <a
+                href=""
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Blogs</a
+              >
+              <a
+                href="/about.html"
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >About Us</a
+              >
+              <a
+                href=""
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Brochure</a
+              >
+            </div>
+          </div>
+          <div class="-mr-2 flex md:hidden">
+            <button
+              id="nav-toggle"
+              class="bg-black text-white p-2 rounded-md focus:outline-none"
+            >
+              <svg
+                class="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden">
+        <a
+          href="/"
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Home</a
+        >
+        <a
+          href="/services.html"
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Services</a
+        >
+        <a
+          href="/clients.html"
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Clients</a
+        >
+        <a
+          href=""
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Blogs</a
+        >
+        <a
+          href="/about.html"
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >About Us</a
+        >
+        <a
+          href=""
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Brochure</a
+        >
+      </div>
+    </nav>
+    <script>
+      const navToggle = document.getElementById("nav-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      navToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      const nav = document.getElementById("navbar");
+      let lastScrollTop = 0;
+
+      window.addEventListener("scroll", () => {
+        const currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll <= 0) {
+          nav.classList.remove("navbar-hidden");
+          nav.classList.add("navbar-visible");
+        } else if (currentScroll > lastScrollTop) {
+          nav.classList.add("navbar-hidden");
+          nav.classList.remove("navbar-visible");
+        } else {
+          nav.classList.remove("navbar-hidden");
+          nav.classList.add("navbar-visible");
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+      });
+    </script>
+
+    <!-- Header -->
+    <header class="relative w-full h-screen bg-Background bg-cover bg-center">
+      <div class="absolute bottom-0 left-0">
+        <img src="Images/bg.png" class="w-[55rem] opacity-50" alt="" />
+      </div>
+
+      <!-- Hero Section -->
+      <div class="flex justify-center items-center h-full w-full">
+        <!-- Text Section Block -->
+        <div class="w-1/3 bg-Navbar p-8 m-4 rounded-md shadow-lg z-10">
+          <a href="">
+            <img
+              src="Images/AilaanLogoBlack2.png"
+              alt="Procon Media Logo"
+              class=""
+            />
+          </a>
+          <p class="text-lg text-center pt-5">
+            A Dynamic Digital Marketing Agency dedicated to empower small-scale
+            businesses with innovative and creative approach.
+          </p>
+        </div>
+
+        <!-- Form Section Block -->
+        <div class="w-1/3 bg-Navbar p-8 m-4 rounded-md shadow-lg z-10">
+          <h2 class="text-4xl font-semibold mb-4 text-center">Contact Us</h2>
+          <form
+            method="post"
+            action="https://script.google.com/macros/s/AKfycbygvEzj51pf3EWx9yRdZ0n8CP-rzY3E5PldQrnog_zkttETJo9YQdvcTA70lsbMNA/exec"
+            id="quotation-form"
+          >
+            <div class="mb-4">
+              <label for="name" class="block mb-2">Name</label>
+              <input
+                type="text"
+                id="name"
+                class="w-full p-2 border border-gray-300 rounded"
+                placeholder="Enter your name"
+                name="name"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="email" class="block mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="w-full p-2 border border-gray-300 rounded"
+                placeholder="Enter your email"
+                name="email"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="phone" class="block mb-2">Phone Number</label>
+              <input
+                type="text"
+                id="phone"
+                class="w-full p-2 border border-gray-300 rounded"
+                name="phone"
+                placeholder="Enter your mobile number"
+                required
+              />
+            </div>
+
+            <button
+              class="w-full p-2 bg-gray-800 text-white rounded hover:bg-gray-600"
+              value="submit"
+              type="submit"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <!-- Services -->
+    <!-- Our Services Section -->
+    <div class="bg-Background p-5 text-center relative h-fit">
+      <h2 class="text-5xl font-bold m-8">Our Services</h2>
+      <p class="text-xl font-semibold mb-10">
+        Comprehensive Online Services to ignite your online success.<br />
+        Empower your business with services from our Website.
+      </p>
+
+      <!-- Services Container -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-screen-xl mx-auto"
+      >
+        <!-- Service Box -->
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">Graphic Design</h3>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">Social Media Marketing</h3>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">SEO</h3>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">Google Ads</h3>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">Web Development</h3>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">E-commerce Solutions</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clients -->
+    <section class="bg-Background p-5 text-center relative h-fit">
+      <h2 class="text-5xl font-bold m-8 text-gray-800">Our Clients</h2>
+
+      <div
+        class="customers-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-screen-lg mx-auto"
+      >
+        <!-- Customer Item -->
+        <div
+          class="customer-item bg-Navbar p-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+        >
+          <img
+            src="Images/Mk-builders.png"
+            alt="Company 1 Logo"
+            class="h-24 mx-auto mb-4 object-contain"
+          />
+          <p class="text-lg font-medium text-gray-700">Mk Builders</p>
+        </div>
+
+        <div
+          class="customer-item bg-Navbar p-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+        >
+          <img
+            src="Images/fbka.jpg"
+            alt="Company 2 Logo"
+            class="h-24 mx-auto mb-4 object-contain"
+          />
+          <p class="text-lg font-medium text-gray-700">FBKA Jewel</p>
+        </div>
+
+        <div
+          class="customer-item bg-Navbar p-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+        >
+          <img
+            src="Images/fineartimg.jpg"
+            alt="Company 3 Logo"
+            class="h-24 mx-auto mb-4 object-contain"
+          />
+          <p class="text-lg font-medium text-gray-700">Fine Art</p>
+        </div>
+
+        <div
+          class="customer-item bg-Navbar p-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+        >
+          <img
+            src="Images/a1 kebebimg.jpg"
+            alt="Company 4 Logo"
+            class="h-24 mx-auto mb-4 object-contain"
+          />
+          <p class="text-lg font-medium text-gray-700">A1 Kebab</p>
+        </div>
+
+        <div
+          class="customer-item bg-Navbar p-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+        >
+          <img
+            src="Images/proconimg.jpg"
+            alt="Company 5 Logo"
+            class="h-24 mx-auto mb-4 object-contain"
+          />
+          <p class="text-lg font-medium text-gray-700">Procon Media</p>
+        </div>
+
+        <div
+          class="customer-item bg-Navbar p-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+        >
+          <img
+            src="Images/perfumeimg.jpg"
+            alt="Company 6 Logo"
+            class="h-24 mx-auto mb-4 object-contain"
+          />
+          <p class="text-lg font-medium text-gray-700">Nayab Perfumes</p>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="bg-Background rounded-xl p-5 mx-auto max-w-full overflow-hidden relative"
+    >
+      <h2 class="text-5xl font-bold text-center mb-6 sm:text-4xl">
+        What Clients Say
+      </h2>
+
+      <div class="flex animate-scroll gap-10 whitespace-nowrap w-fit">
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "Ailaan Digitals transformed our online presence!"
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "Their team is incredibly responsive and creative."
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "We saw significant growth in our sales after their marketing
+          strategies."
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "Professional, timely, and effective services!"
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "Highly recommend Ailaan Digitals for any business needs!"
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "They helped us build a stunning website!"
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "Ailaan Digitals transformed our online presence!"
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "Their team is incredibly responsive and creative."
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "We saw significant growth in our sales after their marketing
+          strategies."
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "Professional, timely, and effective services!"
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "Highly recommend Ailaan Digitals for any business needs!"
+        </div>
+        <div
+          class="testimonial bg-[#ddebeb] text-teal-900 shadow-md p-4 rounded-lg w-44 h-fit text-wrap"
+        >
+          "They helped us build a stunning website!"
+        </div>
+      </div>
+    </section>
+
+    <footer class="thankyou-section bg-Navbar text-black py-10 px-5 text-center">
+      <h2 class="text-7xl font-bold mb-4">Thank You</h2>
+      <p class="text-lg mb-6 max-w-lg mx-auto">
+        Thank you for considering AILAAN DIGITALS. We are excited to work with you and help elevate your brand to new heights. For any inquiries or to get started, feel free to reach us:
+      </p>
+    
+      <div class="contact-info flex flex-col sm:flex-row sm:justify-center gap-6 text-lg">
+        <!-- Email -->
+        <div class="contact-item flex items-center gap-2">
+          <i class="material-icons text-gray-700">email: </i>
+          <a href="mailto:ailaandigitals@gmail.com" class="hover:text-teal-900 transition">
+            ailaandigitals@gmail.com
+          </a>
+        </div>
+    
+        <!-- Phone -->
+        <div class="contact-item flex items-center gap-2">
+          <i class="material-icons text-gray-700">phone</i>
+          <span class="hover:text-teal-900 transition">9987494109</span>
+        </div>
+    
+        <!-- Website -->
+        <div class="contact-item flex items-center gap-2">
+          <i class="material-icons text-gray-700">public</i>
+          <a href="https://ailaandigitals.com" target="_blank" class="hover:text-teal-900 transition">
+            ailaandigitals.com
+          </a>
+        </div>
+      </div>
+    </footer>
+    
+  </body>
+</html>

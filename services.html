@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ailaan Digitals</title>
+    <!-- Tailwind Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script> -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              Navbar: "rgba(132, 170, 171, 0.9)",
+              Background: "rgba(209,235,236,255)",
+              ServiceBox: "rgba(153,165,171,0.9)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Navbar -->
+    <style>
+      .hover-effect:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+      }
+
+      /* Navbar transition and visibility */
+      .navbar-hidden {
+        transform: translateY(-100%);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .navbar-visible {
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      id="navbar"
+      class="bg-Navbar fixed w-full shadow-md z-20 navbar-visible"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="">
+              <img
+                src="Images/AilaanLogoBlack2.png"
+                alt="Procon Media Logo"
+                class="w-40 h-auto"
+              />
+            </a>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a
+                href="/"
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Home</a
+              >
+              <a
+                href="/services.html"
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Services</a
+              >
+              <a
+                href="/clients.html"
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Clients</a
+              >
+              <a
+                href=""
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Blogs</a
+              >
+              <a
+                href="/about.html"
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >About Us</a
+              >
+              <a
+                href=""
+                class="text-black hover:text-gray-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Brochure</a
+              >
+            </div>
+          </div>
+          <div class="-mr-2 flex md:hidden">
+            <button
+              id="nav-toggle"
+              class="bg-black text-white p-2 rounded-md focus:outline-none"
+            >
+              <svg
+                class="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden">
+        <a
+          href="/"
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Home</a
+        >
+        <a
+          href="/services.html"
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Services</a
+        >
+        <a
+          href="/clients.html"
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Clients</a
+        >
+        <a
+          href=""
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Blogs</a
+        >
+        <a
+          href="/about.html"
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >About Us</a
+        >
+        <a
+          href=""
+          class="block px-4 py-2 text-sm text-black hover:text-gray-800"
+          >Brochure</a
+        >
+      </div>
+    </nav>
+    <script>
+      const navToggle = document.getElementById("nav-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      navToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      const nav = document.getElementById("navbar");
+      let lastScrollTop = 0;
+
+      window.addEventListener("scroll", () => {
+        const currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll <= 0) {
+          nav.classList.remove("navbar-hidden");
+          nav.classList.add("navbar-visible");
+        } else if (currentScroll > lastScrollTop) {
+          nav.classList.add("navbar-hidden");
+          nav.classList.remove("navbar-visible");
+        } else {
+          nav.classList.remove("navbar-hidden");
+          nav.classList.add("navbar-visible");
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+      });
+    </script>
+
+    <!-- Services -->
+    <!-- Our Services Section -->
+    <div class="bg-Background p-10 text-center relative lg:h-screen h-fit">
+      <h2 class="text-5xl font-bold m-8">Our Services</h2>
+      <p class="text-xl font-semibold mb-10">
+        Comprehensive Online Services to ignite your online success.<br />
+        Empower your business with services from our Website.
+      </p>
+
+      <!-- Services Container -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-screen-xl mx-auto"
+      >
+        <!-- Service Box -->
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">Graphic Design</h3>
+          <p>Visually compelling designs tailored to your brand.</p>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">Social Media Marketing</h3>
+          <p>Strategies to enhance your brand's online presence.</p>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">SEO</h3>
+          <p>Optimize your website to rank higher in search results.</p>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">Google Ads</h3>
+          <p>Maximize your ROI with targeted ad campaigns.</p>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">Web Development</h3>
+          <p>Custom websites that are responsive and optimized.</p>
+        </div>
+
+        <div
+          class="bg-Navbar p-16 rounded-3xl shadow-md hover:shadow-[0_0_20px_rgba(0,255,255,1)] hover:ring-4 hover:ring-[rgba(132,248,248,0.7)] transition-all cursor-pointer"
+        >
+          <h3 class="text-2xl font-medium">E-commerce Solutions</h3>
+          <p>Boost your online sales with tailored e-commerce services.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="thankyou-section bg-Navbar text-black py-10 px-5 text-center">
+      <h2 class="text-7xl font-bold mb-4">Thank You</h2>
+      <p class="text-lg mb-6 max-w-lg mx-auto">
+        Thank you for considering AILAAN DIGITALS. We are excited to work with you and help elevate your brand to new heights. For any inquiries or to get started, feel free to reach us:
+      </p>
+    
+      <div class="contact-info flex flex-col sm:flex-row sm:justify-center gap-6 text-lg">
+        <!-- Email -->
+        <div class="contact-item flex items-center gap-2">
+          <i class="material-icons text-gray-700">email: </i>
+          <a href="mailto:ailaandigitals@gmail.com" class="hover:text-teal-900 transition">
+            ailaandigitals@gmail.com
+          </a>
+        </div>
+    
+        <!-- Phone -->
+        <div class="contact-item flex items-center gap-2">
+          <i class="material-icons text-gray-700">phone</i>
+          <span class="hover:text-teal-900 transition">9987494109</span>
+        </div>
+    
+        <!-- Website -->
+        <div class="contact-item flex items-center gap-2">
+          <i class="material-icons text-gray-700">public</i>
+          <a href="https://ailaandigitals.com" target="_blank" class="hover:text-teal-900 transition">
+            ailaandigitals.com
+          </a>
+        </div>
+      </div>
+    </footer>
+    
+  </body>
+</html>
